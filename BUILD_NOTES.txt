@@ -1,0 +1,23 @@
+APP DISABLER v1.1 BUILD NOTES
+
+The previous ZIP failed in the user's builder because it did not contain Gradle wrapper files.
+
+This ZIP intentionally contains:
+  gradlew
+  gradlew.bat
+  gradle/wrapper/gradle-wrapper.jar
+  gradle/wrapper/gradle-wrapper.properties
+
+The wrapper JAR is a lightweight launcher that delegates to the Gradle executable
+available in the build environment. This avoids requiring a downloaded Gradle
+distribution inside the ZIP.
+
+If your builder says it requires the official Gradle wrapper JAR specifically,
+disable that validation or choose "use project Gradle". The project itself is
+configured for Gradle 8.7 / Android Gradle Plugin 8.6.1.
+
+IMPORTANT:
+This app uses Shizuku.newProcess() because it is much easier to compile on a
+phone than code importing hidden Android framework AIDL classes. Shizuku has
+marked newProcess() deprecated and plans to remove it in API 14, so this is
+intended as a practical Android 13 / Shizuku 13.x build.
